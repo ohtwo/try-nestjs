@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
@@ -11,24 +11,29 @@ export class UsersController {
 
   @Post()
   async createUser(@Body() dto: CreateUserDto): Promise<void> {
-    console.log(dto);
+    const { name, email, password } = dto;
+    await this.usersService.createUser(name, email, password);
   }
 
   @Post('/email-verify')
-  async verfyEmail(@Query() dto: VerifyEmailDto): Promise<String> {
-    console.log(dto);
-    return;
+  async verfyEmail(@Query() dto: VerifyEmailDto): Promise<string> {
+    const { signupVerifyToken } = dto;
+    return await this.usersService.verifyEmail(signupVerifyToken)
   }
 
   @Post('/login')
-  async login(@Body() dto: UserLoginDto): Promise<String> {
-    console.log(dto);
-    return;
+  async login(@Body() dto: UserLoginDto): Promise<string> {
+    const { email, password } = dto;
+    return await this.usersService.login(email, password);
   }
 
   @Get('/:id')
-  async getUserInfo(@Param('id') userId: String): Promise<UserInfo> {
-    console.log(userId)
-    return;
+  async getUserInfo(@Param('id') userId: string): Promise<UserInfo> {
+    return await this.usersService.getUserInfo(userId)
+  }
+
+  @Delete('/:id')
+  async deleteUser(@Param('id') userId: string): Promise<UserInfo> {
+    return await this.usersService.deleteUser(userId)
   }
 }
