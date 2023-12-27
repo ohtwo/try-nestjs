@@ -51,4 +51,12 @@ export class UsersService {
 
     throw new Error('Method not implemented')
   }
+
+  async deleteUser(userId: string): Promise<UserInfo> {
+    // TODO
+    // 1. Check DB
+    // 2. delete User
+
+    throw new Error('Method not implemented')
+  }
 }
