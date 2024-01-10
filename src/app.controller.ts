@@ -8,6 +8,7 @@ export class AppController {
 
   @Get('hello')
   getHello(@Req() req: Request): string {
-    return this.appService.getHello();
+    return process.env.DATABASE_HOST;
+    // return this.appService.getHello();
   }
 }
