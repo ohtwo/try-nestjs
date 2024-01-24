@@ -1,6 +1,5 @@
 import * as uuid from 'uuid';
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
 import { EmailService } from 'src/email/email.service';
 import { UserInfo } from './entities/user.entity';
 
