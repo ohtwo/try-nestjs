@@ -43,7 +43,15 @@ export class UsersService {
     throw new Error('Method not implemented')
   }
 
-  async getUserInfo(userId: string): Promise<UserInfo> {
+  findAll() {
+    // TODO
+    // 1. Check DB
+    // 2. return All Users
+
+    return 'all users'
+  }
+
+  async getUserInfo(userId: number): Promise<UserInfo> {
     // TODO
     // 1. Check DB
     // 2. return UserInfo
