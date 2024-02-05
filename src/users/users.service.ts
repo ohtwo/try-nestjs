@@ -51,6 +51,10 @@ export class UsersService {
     return 'all users'
   }
 
+  findOne(id: number) {
+    return `${id} user`
+  }
+
   async getUserInfo(userId: number): Promise<UserInfo> {
     // TODO
     // 1. Check DB
