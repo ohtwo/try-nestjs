@@ -1,16 +1,11 @@
 import { BadRequestException } from "@nestjs/common";
 import { Transform } from "class-transformer";
 import { IsString, MinLength, IsEmail, MaxLength, Matches } from "class-validator";
+import { NotIn } from "src/util/not-in";
 
 export class CreateUserDto {
-  @Transform(params => {
-    console.log(params);
-    const { value, obj } = params;
-    if (obj.password.includes(obj.name.trim())) {
-      throw new BadRequestException('password cannot contain the same string as name.')
-    }
-    return value.trim();
-  })
+  @Transform(params => params.value.trim())
+  @NotIn('password', { message: 'password cannot contain the same string as name.' })
   @IsString()
   @MinLength(2)
   @MaxLength(30)
